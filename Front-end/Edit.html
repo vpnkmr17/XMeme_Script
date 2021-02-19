@@ -1,0 +1,87 @@
+ 
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="script.js"></script>
+        <title>Meme</title>
+      </head>
+
+<body class="bg-image" style="background-image:url('back.jpg')">
+
+
+
+<nav class="navbar navbar-expand-lg mb-2">
+    <a class="navbar-brand" href="#">Meme</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto ">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+
+
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+<div class="row mb-3">
+    <div class="col-md-4 mx-auto col-10">
+        <form  class="form" id="meme-create-form" method="PATCH" action="/memes/update">
+                <!-- {% csrf_token %} -->
+            <div class="d-none alert alert-danger" id="meme-create-form-error"></div>
+            <div class="d-block mt-2 container" id="content">
+                <textarea   class="form-control bg-dark text-light" name="caption" id="caption" placeholder="Your caption..."></textarea>
+            </div>
+            <div class="d-block mt-2 container" id="ur">
+                <textarea   class="form-control bg-dark text-light" name="url" id="url" placeholder="Enter your URL..."></textarea>
+            </div>
+                
+            <!-- <button type="button" onclick="addCaption('caption','content')" class="btn btn-primary">Upload Image</button> -->
+            <!-- <button type="button" onclick="addCaption('content','caption')" class="btn btn-primary">Content</button> -->
+            <div class="text-center mt-2">
+            <button type="submit" class="btn btn-primary save">Update</button>
+            </div>
+            </form> 
+            
+
+    </div>
+</div>
+<script>
+
+
+var url=document.URL
+var id = url.substring(url.lastIndexOf('?') + 1);
+var caption=document.getElementById("caption")
+var link=document.getElementById("url")
+console.log("here id is ",id)
+loadMemes("",id)
+const memeCreateFormEl=document.getElementById("meme-create-form")
+memeCreateFormEl.addEventListener("submit",handleMemeFormDidUpdate)
+
+function handleMemeFormDidUpdate(event){
+        event.preventDefault()  
+        var myForm=event.target
+        var myFormData=new FormData(myForm)
+        var url=myForm.getAttribute("action")
+        const method=myForm.getAttribute("method")
+        url='https://x-meme-s.herokuapp.com'+url+"/"+id
+        backendHandleData(url,method,myFormData,myForm,"id")    
+}
+
+    
+
+
+</script>
+</body>
+</html>
