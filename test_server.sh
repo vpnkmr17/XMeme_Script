@@ -10,7 +10,7 @@
 
 chmod +x install.sh
 
-sudo ./install.sh
+./install.sh
 
 
 # 1. Run the user’s server execution steps which will bring up the server
@@ -19,7 +19,7 @@ sudo ./install.sh
 
 chmod +x server_run.sh
 
-./server_run.sh &
+./server_run.sh & 
 
 
 # 3. Add a sleep timer to sleep.sh depending upon how long you want to sleep so that the server is ready.
