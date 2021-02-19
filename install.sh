@@ -1,3 +1,4 @@
+sudo apt-get install python3-pip
 pip install Django==3.1.6
 pip install django-cors-headers
 pip install djangorestframework
